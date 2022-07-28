@@ -1,0 +1,17 @@
+<div class="d-flex flex-column p-5 gap-5">
+  <div>
+    <h3 class="text-danger">
+      <span class="text-black">Title</span> : {{ product.title }}
+    </h3>
+    <h3 class="text-danger">
+      <span class="text-black">Price</span> : {{ product.price }}
+    </h3>
+    <h3 class="text-danger">
+      <span class="text-black">Description</span> : {{ product.description }}
+    </h3>
+    <img [src]="product.image" />
+  </div>
+  <button style="width: fit-content" class="btn btn-danger" (click)="goBack()">
+    Back!
+  </button>
+</div>

@@ -1,0 +1,103 @@
+<section class="row p-5 d-flex align-items-center">
+  <form class="col-6" [formGroup]="addProductForm">
+    <h4>Add Product</h4>
+    <div class="row d-flex flex-column gap-3 col-8 mt-4">
+      <div class="col">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Title"
+          formControlName="title"
+        />
+        <span class="text-danger" [hidden]="title.untouched || title.valid"
+          >This Field is Required!</span
+        >
+      </div>
+      <div class="col">
+        <textarea
+          class="form-control"
+          placeholder="Description"
+          rows="5"
+          formControlName="description"
+        ></textarea>
+        <span
+          class="text-danger"
+          [hidden]="description.untouched || description.valid"
+          >This Field is Required!</span
+        >
+      </div>
+      <div class="col">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Category"
+          formControlName="category"
+        />
+        <span
+          class="text-danger"
+          [hidden]="category.untouched || category.valid"
+          >This Field is Required!</span
+        >
+      </div>
+      <div class="col">
+        <input
+          type="url"
+          class="form-control"
+          placeholder="Image"
+          formControlName="image"
+        />
+        <span class="text-danger" [hidden]="image.untouched || image.valid"
+          >This Field is Required!</span
+        >
+      </div>
+      <div class="col">
+        <input
+          type="number"
+          class="form-control"
+          placeholder="Price"
+          formControlName="price"
+        />
+        <span class="text-danger" [hidden]="price.untouched || price.valid"
+          >This Field is Required!</span
+        >
+      </div>
+    </div>
+    <div class="d-flex gap-2 mt-3">
+      <button
+        class="btn btn-success"
+        (click)="saveProduct()"
+        [disabled]="addProductForm.invalid"
+      >
+        Save
+      </button>
+      <button class="btn btn-danger" (click)="clearInputs()">Clear</button>
+    </div>
+  </form>
+  <!-- Card -->
+  <div class="card col-2 py-3">
+    <img
+      class="card-img-top"
+      style="height: 200px; object-fit: cover"
+      src="{{
+        addProductForm.value.image ||
+          'https://welcome.setantasports.com/wp-content/uploads/2022/03/placeholder.png'
+      }}"
+      alt="Card image cap"
+    />
+    <div class="card-body d-flex gap-2 flex-column">
+      <h5 class="card-title" style="color: red">
+        {{ addProductForm.value.title }}
+      </h5>
+      <h6>Description:</h6>
+      <p class="card-text" style="overflow: auto; max-height: 300px">
+        {{ addProductForm.value.description }}
+      </p>
+      <h5 class="card-title" style="color: red">
+        Price: {{ addProductForm.value.price | currency }}
+      </h5>
+      <p class="card-text" style="overflow: hidden">
+        Category: {{ addProductForm.value.category }}
+      </p>
+    </div>
+  </div>
+</section>

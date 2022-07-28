@@ -1,0 +1,50 @@
+<table class="table table-striped">
+  <thead class="bg-dark text-white">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Username</th>
+      <th scope="col">Avatar</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let user of allUsers.data">
+      <th scope="row">{{ user.id }}</th>
+      <td>{{ user.fname }} {{ user.lname }}</td>
+      <td>{{ user.username }}</td>
+      <td>
+        <img [src]="user.avatar" alt="" width="100" />
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<nav aria-label="Page navigation example">
+  <ul class="pagination justify-content-center">
+    <li
+      class="page-item"
+      (click)="navButtons(currentPage - 1, $event)"
+      [ngClass]="{ disabled: currentPage == 1 }"
+    >
+      <a class="page-link" tabindex="-1">Previous</a>
+    </li>
+
+    <li
+      class="page-item"
+      *appRepeat="allUsers.total_pages; let i = index"
+      (click)="getUsersByPage(i + 1)"
+    >
+      <a class="page-link" [ngClass]="{ active: currentPage == i + 1 }">{{
+        i + 1
+      }}</a>
+    </li>
+
+    <li
+      class="page-item"
+      (click)="navButtons(currentPage + 1, $event)"
+      [ngClass]="{ disabled: currentPage >= allUsers.total_pages }"
+    >
+      <a class="page-link">Next</a>
+    </li>
+  </ul>
+</nav>

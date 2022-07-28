@@ -1,0 +1,19 @@
+.card-count {
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.card:hover .card-count {
+  opacity: 1;
+  transition: .3s;
+  transform: translateY(0px);
+}
+
+.card {
+  flex: 1;
+  width: 300px;
+}
+
+.card-title {
+  cursor: pointer;
+}

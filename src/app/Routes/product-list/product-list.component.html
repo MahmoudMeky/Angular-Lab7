@@ -1,0 +1,51 @@
+<main class="d-flex flex-wrap p-4">
+  <div class="col-9 gap-4 d-flex flex-column" (getFavProduct)="($event)">
+    <div class="d-flex gap-2">
+      <input
+        type="search"
+        class="form-control w-50"
+        placeholder="Search.."
+        [(ngModel)]="searchText"
+        style="height: 39px"
+      />
+      <button class="btn btn-success" (click)="goLogin()">Login</button>
+      <button class="btn btn-info text-white" (click)="goAddProduct()">
+        Add Product
+      </button>
+    </div>
+
+    <div
+      class="d-flex justify-items-center align-items-center gap-1"
+      *ngFor="let check of ['title', 'description']"
+    >
+      <input
+        type="radio"
+        name="radio"
+        id="{{ check }}"
+        (click)="searchPropsHandler(check)"
+      />
+      <label for="{{ check }}" class="fw-bold">{{ check }}</label>
+    </div>
+
+    <div class="row d-flex me-3">
+      <app-product-card
+        class="d-flex flex-wrap col-3 mb-3"
+        *ngFor="let product of products | filter: searchText || '':searchProps"
+        [productData]="product"
+      ></app-product-card>
+    </div>
+  </div>
+
+  <aside class="col-3 position-sticky">
+    <app-cart
+      class="position-sticky"
+      style="
+        display: flex;
+        flex-direction: column;
+        height: 300px;
+        overflow-y: auto;
+      "
+    ></app-cart>
+    <app-favorite></app-favorite>
+  </aside>
+</main>
